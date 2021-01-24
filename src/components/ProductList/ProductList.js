@@ -14,7 +14,9 @@ class ProductList extends Component
     }
 
     componentDidMount(){
-        this.setState({ products: this.productService.getProducts() });
+        this.productService.getProducts().then((productList) => {
+            this.setState({products: productList
+        });})
     }
 
     render(){
@@ -32,7 +34,8 @@ class ProductList extends Component
                             this.state.products.map(product => {
                                 return(
                                     <div>
-                                        {product.name}
+                                        <div>{product.title}</div>
+                                        <div>Price: {product.variants[0].price} EUR</div>
                                     </div>
                                 );
                             })
@@ -45,4 +48,5 @@ class ProductList extends Component
 }
 
 export default ProductList;
+
 
