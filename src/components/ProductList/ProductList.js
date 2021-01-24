@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ProductService from '../../services/Product/ProductService';
-import {ProductCard} from 'react-ui-cards';
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-responsive-list';
+import 'react-responsive-list/assets/index.css';
 
 class ProductList extends Component
 {
@@ -32,22 +33,26 @@ class ProductList extends Component
             else {
                 return (
                     <div>
-                        {
-                            this.state.products.map(product => {
-                                return(
-                                    <div key={product.id}>
-                                        <ProductCard
-                                        photos={[
-                                            product.images[0].src
-                                        ]}
-                                        price={product.variants[0].price + ' EUR'}
-                                        productName={product.title}
-                                        />
-                                    </div>
-
-                                );
-                            })
-                        }
+                        <Table breakPoint={700}>
+                            <Tbody>
+                                {
+                                    this.state.products.map((product) => {
+                                        return (
+                                            <Tr key={product.id}>
+                                                <Td>
+                                                    <div><img src={product.image.src}/></div>
+                                                </Td>
+                                                <Td>
+                                                    <h4>{product.title}</h4>
+                                                    <h3>{product.variants[0].price + ' EUR'}</h3>
+                                                    <div>{product.body_html.replace(/<\/?[^>]+(>|$)/g, "")}</div>
+                                                </Td>
+                                            </Tr>
+                                        );
+                                    })
+                                }
+                            </Tbody>
+                            </Table>
                     </div>
                 );
             }
