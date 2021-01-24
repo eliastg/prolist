@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ProductService from '../../services/Product/ProductService';
+import {ProductCard} from 'react-ui-cards';
 
 class ProductList extends Component
 {
@@ -14,9 +15,10 @@ class ProductList extends Component
     }
 
     componentDidMount(){
-        this.productService.getProducts().then((productList) => {
-            this.setState({products: productList
-        });})
+        this.productService.getProducts().then(
+            (productList) => { this.setState({products: productList}) },
+            () => { this.setState({products: null}) }
+        );
     }
 
     render(){
@@ -33,10 +35,16 @@ class ProductList extends Component
                         {
                             this.state.products.map(product => {
                                 return(
-                                    <div>
-                                        <div>{product.title}</div>
-                                        <div>Price: {product.variants[0].price} EUR</div>
+                                    <div key={product.id}>
+                                        <ProductCard
+                                        photos={[
+                                            product.images[0].src
+                                        ]}
+                                        price={product.variants[0].price + ' EUR'}
+                                        productName={product.title}
+                                        />
                                     </div>
+
                                 );
                             })
                         }
