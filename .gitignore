@@ -27,3 +27,6 @@ package-lock.json
 
 # Lint
 .eslintcache
+
+# Configuration.
+src/config/config.json

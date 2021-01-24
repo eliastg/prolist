@@ -13,42 +13,34 @@ class ProductList extends Component
         }
     }
 
-    getProductList = () => {
-        if (!this.state.products){
-            return(<h1>The store information cannot be reached. Please check your connection.</h1>);
-        }
-        
-        if(this.state.products === []){
-            return(<h1>No products available.</h1>);
-        }
-
-        return(
-            <div>
-                {
-                    this.state.products.map(product => {
-                        return(
-                            <div>
-                                {product.name}
-                            </div>
-                        );
-                    })
-                }
-            </div>
-        );
-    }
-
     componentDidMount(){
-        this.setState({
-            products: this.productService.getProducts()
-        })
+        this.setState({ products: this.productService.getProducts() });
     }
 
     render(){
-        return(
-            <div>
-                {this.getProductList()}
-            </div>
-        );
+        if (!Array.isArray(this.state.products)){
+            return (<div><h2>Please check your connection.</h2></div>);
+        }
+        else{
+            if(this.state.products === []){
+                return (<div><h1>No products available.</h1></div>);
+            }
+            else {
+                return (
+                    <div>
+                        {
+                            this.state.products.map(product => {
+                                return(
+                                    <div>
+                                        {product.name}
+                                    </div>
+                                );
+                            })
+                        }
+                    </div>
+                );
+            }
+        }
     }
 }
 

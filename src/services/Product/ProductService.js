@@ -1,10 +1,20 @@
+import axios from 'axios';
+import Configuration from '../../config/Configuration';
+
 class ProductService{
+    PRODUCT_LIST_ENDPOINT = `${Configuration.API_ENDPOINT_BASE}products.json`;
+
+    handleResponse = (response) => {
+        console.log(`[ProductService.handleResponse] response: ${response}`);
+        return response;
+    }
+
     getProducts(){
-        return [
-            {name: "p1", imgUrl: "#", price: "0.0"},
-            {name: "p2", imgUrl: "#", price: "0.0"},
-            {name: "p3", imgUrl: "#", price: "0.0"},
-        ];
+        console.log(`[ProductService] PRODUCT_LIST_ENDPOINT: ${this.PRODUCT_LIST_ENDPOINT}`);
+        return axios.get(this.PRODUCT_LIST_ENDPOINT).then(
+            response => {this.handleResponse(response)}, 
+            error => {return null}
+        );
     }
 }
 
