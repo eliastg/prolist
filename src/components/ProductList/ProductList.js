@@ -3,6 +3,7 @@ import ProductService from '../../services/Product/ProductService';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-responsive-list';
 import 'react-responsive-list/assets/index.css';
 import ProductListItem from '../ProductListItem/ProductListItem';
+import Configuration from '../../config/Configuration';
 
 class ProductList extends Component
 {
@@ -34,6 +35,7 @@ class ProductList extends Component
             else {
                 return (
                     <div>
+                        <div><h2>Products of <a target="_blank" href={Configuration.STORE_URL}>etgtest Store</a></h2></div>
                         <Table breakPoint={700}>
                             <Tbody>
                                 {
@@ -42,7 +44,7 @@ class ProductList extends Component
                                     })
                                 }
                             </Tbody>
-                            </Table>
+                        </Table>
                     </div>
                 );
             }
