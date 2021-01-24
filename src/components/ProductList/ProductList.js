@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ProductService from '../../services/Product/ProductService';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-responsive-list';
 import 'react-responsive-list/assets/index.css';
+import ProductListItem from '../ProductListItem/ProductListItem';
 
 class ProductList extends Component
 {
@@ -37,18 +38,7 @@ class ProductList extends Component
                             <Tbody>
                                 {
                                     this.state.products.map((product) => {
-                                        return (
-                                            <Tr key={product.id}>
-                                                <Td>
-                                                    <div><img src={product.image.src}/></div>
-                                                </Td>
-                                                <Td>
-                                                    <h4>{product.title}</h4>
-                                                    <h3>{product.variants[0].price + ' EUR'}</h3>
-                                                    <div>{product.body_html.replace(/<\/?[^>]+(>|$)/g, "")}</div>
-                                                </Td>
-                                            </Tr>
-                                        );
+                                        return (<ProductListItem product={product} key={product.id}/>);
                                     })
                                 }
                             </Tbody>
