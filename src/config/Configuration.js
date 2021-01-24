@@ -1,7 +1,7 @@
 import config from "./config.json";
 
 class Configuration{;
-    static API_ENDPOINT_BASE = `https://${config.API_ENDPOINT_BASE}`;
+    static API_ENDPOINT_BASE = `${config.CORS_PROXY}https://${config.API_ENDPOINT_BASE}`;
     static headers = {
         headers: {
             "X-Shopify-Access-Token": config.API_SECRET,
