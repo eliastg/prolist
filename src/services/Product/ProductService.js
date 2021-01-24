@@ -11,7 +11,7 @@ class ProductService{
 
     getProducts(){
         console.log(`[ProductService] PRODUCT_LIST_ENDPOINT: ${this.PRODUCT_LIST_ENDPOINT}`);
-        return axios.get(this.PRODUCT_LIST_ENDPOINT).then(
+        return axios.get(this.PRODUCT_LIST_ENDPOINT, Configuration.headers).then(
             response => {this.handleResponse(response)}, 
             error => {return null}
         );
