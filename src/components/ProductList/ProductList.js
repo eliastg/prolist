@@ -13,23 +13,31 @@ class ProductList extends Component
         this.productService = new ProductService();
 
         this.state = {
-            products: null
+            products: null,
+            loading: true
         }
+    }
+
+    responseError = () => {
+        return !Array.isArray(this.state.products)
     }
 
     componentDidMount(){
         this.productService.getProducts().then(
-            (productList) => { this.setState({products: productList}) },
-            () => { this.setState({products: null}) }
+            (productList) => { this.setState({products: productList, loading: false}) },
+            () => { this.setState({products: null, loading: false}) }
         );
     }
 
     render(){
-        if (!Array.isArray(this.state.products)){
-            return (<div><Loader type="Oval" color="#000000" height={150} width={150} /></div>);
+        if(this.state.loading){
+            return (<div><Loader type="Oval" color="#000000" height={100} width={100} /></div>);
+        }
+        else if (this.responseError()){
+            return (<div><h2>An error occurred. Please check your connection.</h2></div>);
         }
         else{
-            if(this.state.products === []){
+            if(this.state.products.length === 0){
                 return (<div><h1>No products available.</h1></div>);
             }
             else {
