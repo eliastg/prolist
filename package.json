@@ -9,6 +9,7 @@
     "axios": "^0.21.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-loader-spinner": "^3.1.14",
     "react-responsive-list": "0.0.4",
     "react-scripts": "4.0.1",
     "react-ui-cards": "^2.0.0",

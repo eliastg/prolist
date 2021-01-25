@@ -3,7 +3,7 @@ import ProductService from '../../services/Product/ProductService';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-responsive-list';
 import 'react-responsive-list/assets/index.css';
 import ProductListItem from '../ProductListItem/ProductListItem';
-import Configuration from '../../config/Configuration';
+import Loader from 'react-loader-spinner';
 
 class ProductList extends Component
 {
@@ -26,7 +26,7 @@ class ProductList extends Component
 
     render(){
         if (!Array.isArray(this.state.products)){
-            return (<div><h2>Please check your connection.</h2></div>);
+            return (<div><Loader type="Oval" color="#000000" height={150} width={150} /></div>);
         }
         else{
             if(this.state.products === []){
@@ -35,7 +35,6 @@ class ProductList extends Component
             else {
                 return (
                     <div>
-                        <div><h2>Products of <a target="_blank" href={Configuration.STORE_URL}>etgtest Store</a></h2></div>
                         <Table breakPoint={700}>
                             <Tbody>
                                 {
