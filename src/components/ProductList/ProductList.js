@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ProductService from '../../services/Product/ProductService';
-import { Table, Thead, Tbody, Tr, Th, Td } from 'react-responsive-list';
+import { Table, Tbody} from 'react-responsive-list';
 import 'react-responsive-list/assets/index.css';
 import ProductListItem from '../ProductListItem/ProductListItem';
 import Loader from 'react-loader-spinner';
